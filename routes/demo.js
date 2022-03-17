@@ -148,11 +148,22 @@ router.post('/login', async function (req, res) {
 });
 
 router.get('/admin', function (req, res) {
-  if (!req.session.isAuthenticated) {
+  if (!res.locals.isAuth) {
     return res.status(401).render('401')
   }
+
+  if (!res.locals.isAdmin) {
+    return res.status(403).render('403');
+  }
+
   res.render('admin');
 });
+
+router.get('/profile', function (req, res) {
+  if (!res.locals.isAuth) {
+    return res.status(401).render('401');
+  }
+})
 
 router.post('/logout', function (req, res) {
   req.session.user = null;
