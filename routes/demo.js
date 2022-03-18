@@ -62,10 +62,12 @@ router.post('/signup', async function (req, res) {
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
     };
+
     req.session.save(function() {
       res.redirect('/signup');
     });
     return;
+
   }
 
   const existingUser = await db
@@ -131,7 +133,7 @@ router.post('/login', async function (req, res) {
     req.session.inputData = {
       hasError: true,
       message: 'Could not log in - please check your credentials!',
-      email: confirmEmail,
+      email: enteredEmail,
       password: enteredPassword,
     };
     req.session.save(function() {
