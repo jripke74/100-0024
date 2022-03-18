@@ -1,0 +1,2 @@
+mongodb/data/* filter=lfs diff=lfs merge=lfs -text
+mongodb/logs/* filter=lfs diff=lfs merge=lfs -text
